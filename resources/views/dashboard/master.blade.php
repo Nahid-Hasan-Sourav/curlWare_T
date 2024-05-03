@@ -10,7 +10,7 @@
    
 
     <title>@yield('title')</title>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
    @include('dashboard.includes.style')
   </head>
 
