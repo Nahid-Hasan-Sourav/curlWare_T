@@ -20,17 +20,34 @@
                             <thead>
                                 <tr>
                                     <th>SL NO</th>
-                                    <th>Product Name</th>
-                                    <th>Category Name</th>
-                                    <th>Sub Category Name</th>
-                                    <th>Image</th>
-                                    <th>Publication Status</th>
+                                    <th>Blog Title</th>    
+                                    <th>Feature Image</th>                                                                                               
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
+                                
+                                @foreach ($allBlog as $blog)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                <td>{{ $blog->title }}</td>
+                                <td>
+                                    <img src="{{ $blog->featured_image}}" alt="img" width="50px" height="50px">
+                                </td>                                <td>
+                                    <a href="{{ route('blog.edit', ['blog' => $blog]) }}" class="btn btn-success btn-sm">
+                                        <i class="fas fa-pencil-alt"></i> 
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteBlog({{ $blog->id }})">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    
+                                    <a href="{{ route('blog.details',['id'=>$blog->id]) }}" class="btn btn-primary btn-sm">
+                                        <i class="fa-solid fa-circle-info"></i>                                               </a>
 
+                                </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -51,6 +68,30 @@
                 toastr.success("{{ Session::get('success') }}");
                 playAudio()
             @endif
+
+
+            
         });
+
     </script>
+   
+
+<script>
+    function deleteBlog(blogId) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this blog post!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ url('/blog/delete/') }}/" + blogId;
+            }
+        });
+    }
+</script>
+
 @endsection

@@ -25,6 +25,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/blog/create',[BlogController::class,'create'])->name('blog.create');
     Route::post('/blog/store',[BlogController::class,'store'])->name('blog.store');
     Route::post('/upload-image',[BlogController::class,'uploadImages'])->name('blog.uploadImages');
+    Route::get('/blog/edit/{blog}',[BlogController::class,'edit'])->name('blog.edit');
+    Route::post('/blog/update/{id}',[BlogController::class,'update'])->name('blog.update');
+    Route::get('/blog/delete/{id}',[BlogController::class,'destroy'])->name('blog.destroy');
+    Route::get('/blog/details/{id}',[BlogController::class,'destroy'])->name('blog.details');
+
+
+
 
 
 

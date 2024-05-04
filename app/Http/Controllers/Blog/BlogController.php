@@ -21,7 +21,8 @@ class BlogController extends Controller
         return $file_path ? url($file_path) : null;
     }
     public function index(){
-        return view('dashboard.blog.index');
+        $allBlog = Blog::all();
+        return view('dashboard.blog.index',compact('allBlog'));
     }
 
     public function create(){
@@ -44,36 +45,7 @@ class BlogController extends Controller
 
     }
 
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         // Validate the request data
-    //         $validatedData = $request->validate([
-    //             'title' => 'required',
-    //             'feature_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-    //             'content' => 'required',
-    //         ]);
- 
-    //         // Retrieve the authenticated user's ID
-    //         $user_id = Auth::id();
     
-    //         // Create a new blog post
-    //         Blog::create([
-    //             'title' => $validatedData['title'],
-    //             'user_id' => $user_id,
-    //             'featured_image' => $this->getImageUrl($request->file('feature_image'), '/uploads/blog/featured-images/'),
-    //             'content' => $validatedData['content'],
-    //         ]);
-    
-    //         // Redirect back with a success message
-    //         return redirect()->back()->with('success', 'Blog post created successfully.');
-    //     } catch (\Exception $e) {
-    //         // Log any exceptions that occur
-    //         Log::error('Error storing blog post: ' . $e->getMessage());
-    //         // Redirect back with an error message
-    //         return redirect()->back()->with('error', 'An error occurred while creating the blog post.');
-    //     }
-    // }
 
     public function store(BlogStoreRequest $request)
     {
@@ -95,6 +67,38 @@ class BlogController extends Controller
             return redirect()->back()->with('error', 'An error occurred while creating the blog post.');
         }
     }
+
+    public function edit(Blog $blog){
+        return view('dashboard.blog.edit',compact('blog'));
+    }
+    public function update(Request $request, $id){
+        $blog = Blog::find($id);
+    
+        $blog->title = $request->input('title');
+        $blog->content = $request->input('content');
+    
+        if ($request->hasFile('feature_image')) {
+            if ($blog->featured_image) {
+                if (file_exists(public_path($blog->featured_image))) {
+                    unlink(public_path($blog->featured_image));
+                }
+            }
+            $blog->featured_image = $this->getImageUrl($request->file('feature_image'), '/uploads/blog/featured-images/');
+        }
+    
+        $blog->save();
+    
+        return redirect()->route('blog.index')->with('success', 'Blog post updated successfully.');
+    }
+
+    public function destroy($id){
+        $blog = Blog::find($id);
+
+        $blog->delete();
+        return redirect()->route('blog.index')->with('success', 'Blog post deleted successfully.');
+
+    }
+    
     
 
     
