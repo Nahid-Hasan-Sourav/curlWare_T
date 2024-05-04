@@ -10,7 +10,23 @@
    
 
     <title>@yield('title')</title>
+   
+  
+     
+
+  
+    {{-- TOASTR START HERE --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+     <!-- Toastr CSS -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+     <!-- Toastr JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {{-- TOASTR END HERE --}}
+
+
+
+
    @include('dashboard.includes.style')
   </head>
 
@@ -92,6 +108,18 @@
       </footer> --}}
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
+
+
+
+{{-- playing audio --}}
+<audio id="errorAudio" controls preload="none" style="display: none;">
+  <source src="{{ asset('audio/error.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('audio/error.ogg') }}" type="audio/ogg">
+</audio>
+<audio id="successAudio" controls preload="none" style="display: none;">
+  <source src="{{ asset('audio/success.mp3') }}" type="audio/mpeg">
+  <source src="{{ asset('audio/success.ogg') }}" type="audio/ogg">
+</audio>
 
     @include('dashboard.includes.scripts')
   </body>
