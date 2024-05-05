@@ -8,7 +8,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str; // Import the Str class for generating unique file names
+use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     public function getImageUrl($file, $path){
@@ -21,7 +21,7 @@ class BlogController extends Controller
         return $file_path ? url($file_path) : null;
     }
     public function index(){
-        $allBlog = Blog::all();
+        $allBlog = Blog::paginate(5);
         return view('dashboard.blog.index',compact('allBlog'));
     }
 
@@ -96,6 +96,13 @@ class BlogController extends Controller
 
         $blog->delete();
         return redirect()->route('blog.index')->with('success', 'Blog post deleted successfully.');
+
+    }
+
+    public function details($id){
+        $blog = Blog::find($id);
+
+        return view('frontend.blog-details.index',compact('blog'));
 
     }
     

@@ -50,6 +50,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $allBlog->onEachSide(1)->links() }}
                     </div>
                 </div>
             </div>

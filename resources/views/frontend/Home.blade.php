@@ -80,4 +80,36 @@
   </button>
 <!-- Carousel wrapper -->
 </div>
+<div class="text-center p-4 text-decoration-underline">
+  <h3>ALL BLOGS</h3>
+</div>
+<div class="container-fluid px-0 mt-5" >
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+    @foreach($blogs as $blog)
+   <div class="col">
+      <div class="card">
+        <img src="{{ $blog->featured_image }}" class="card-img-top" style="height:250px" alt="Fissure in Sandstone">
+        <div class="card-body">
+          <h5 class="card-title">{{ $blog->title }}</h5>
+
+          <p>{{ \Illuminate\Support\Str::limit(strip_tags($blog->content), 100) }}</p> 
+
+          <a href="{{ route('blog.details',['id'=>$blog->id]) }}" class="btn btn-primary" data-mdb-ripple-init>Details</a>
+          {{-- <p>{!! $blog->content !!}</p>       --}}
+        
+        
+        </div>
+      </div>
+    </div>
+
+    @endforeach
+
+    <!-- Card 1 -->
+ 
+
+    
+  </div>
+</div>
+
 @endsection

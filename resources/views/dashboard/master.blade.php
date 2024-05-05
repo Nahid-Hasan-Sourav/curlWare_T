@@ -52,9 +52,9 @@
         <nav class="nav">
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-              <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
-              <img src="{{asset('/')}}admin/assets/img/img9.jpg" alt="..." class="wd-32 rounded-circle">
+              <span class="logged-name">{{ Auth::user()->name }}</span></span>
+              {{-- <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
+              <img src="{{asset('/')}}admin/assets/img/img9.jpg" alt="..." class="wd-32 rounded-circle"> --}}
 
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">
@@ -71,14 +71,7 @@
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
         </nav>
-        <div class="navicon-right">
-          <a id="btnRightMenu" href="" class="pos-relative">
-            <i class="icon ion-ios-bell-outline"></i>
-            <!-- start: if statement -->
-            <span class="square-8 bg-danger"></span>
-            <!-- end: if statement -->
-          </a>
-        </div><!-- navicon-right -->
+        <!-- navicon-right -->
       </div><!-- sl-header-right -->
     </div>sl-header
     <!-- ########## END: HEAD PANEL ########## -->
@@ -90,7 +83,7 @@
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="sl-mainpanel">
       <nav class="breadcrumb sl-breadcrumb">
-        <a class="breadcrumb-item" href="index.html">Starlight</a>
+        <a class="breadcrumb-item" href="{{ route('home') }}">BlogSite</a>
         <span class="breadcrumb-item active">Dashboard</span>
       </nav>
 
