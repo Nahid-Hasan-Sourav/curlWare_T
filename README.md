@@ -13,7 +13,7 @@ You can watch the project video [here](https://drive.google.com/file/d/1oqBEuvVn
 ## Installation
 Follow the steps below to set up the project locally:
 - Clone the repo: git clone https://github.com/Nahid-Hasan-Sourav/curlWare_T.git
-- Run cd stead_fast_t 
+- Run cd curlWare_T 
 - Run composer install command
 - Run yarn install or npm install command
 - Run copy .env.example .env command
