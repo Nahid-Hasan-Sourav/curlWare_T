@@ -21,20 +21,26 @@
                                 <tr>
                                     <th>SL NO</th>
                                     <th>Blog Title</th>    
-                                    <th>Feature Image</th>                                                                                               
+                                    <th>Feature Image</th> 
+                                    <th>Author Name</th> 
+                                                                                               
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 
-                                @foreach ($allBlog as $blog)
+                                @forelse ($allBlog as $blog)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                 <td>{{ $blog->title }}</td>
                                 <td>
                                     <img src="{{ $blog->featured_image}}" alt="img" width="50px" height="50px">
-                                </td>                                <td>
+                                </td>  
+                                <td>{{ $blog->user->name }}</td>
+                              
+                                <td>
+
                                     <a href="{{ route('blog.edit', ['blog' => $blog]) }}" class="btn btn-success btn-sm">
                                         <i class="fas fa-pencil-alt"></i> 
                                     </a>
@@ -47,7 +53,10 @@
 
                                 </td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                <small class="text-danger">You Have No Blogs</small>
+
+                                @endforelse
                             </tbody>
                         </table>
                         {{ $allBlog->onEachSide(1)->links() }}

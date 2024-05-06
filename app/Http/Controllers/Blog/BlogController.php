@@ -21,7 +21,9 @@ class BlogController extends Controller
         return $file_path ? url($file_path) : null;
     }
     public function index(){
-        $allBlog = Blog::paginate(5);
+        $user_id = Auth::id();
+
+        $allBlog = Blog::where('user_id',$user_id)->paginate(5);
         return view('dashboard.blog.index',compact('allBlog'));
     }
 
@@ -100,7 +102,7 @@ class BlogController extends Controller
     }
 
     public function details($id){
-        $blog = Blog::find($id);
+        $blog = Blog::with('user')->find($id);
 
         return view('frontend.blog-details.index',compact('blog'));
 

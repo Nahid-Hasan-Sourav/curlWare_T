@@ -4,7 +4,7 @@
 
 ## Project Video Link
 
-You can watch the project video [here]().
+You can watch the project video [here](https://drive.google.com/file/d/1oqBEuvVnQ5FkKXeooTiLQq87slRi3lPg/view?usp=drive_link).
 
 <hr>
 

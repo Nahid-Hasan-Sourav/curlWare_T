@@ -15,6 +15,9 @@
         </div>
 
         <p class="p-3">{!! $blog->content !!}</p>
+
+        <small>Posted By</small>
+        <small>{{ $blog->user->name}}</small>
       </div>
 
 </div>
